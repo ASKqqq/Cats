@@ -1,0 +1,21 @@
+h1 {
+  text-align: center;
+  margin: 32px 0 32px 0;
+}
+
+.card_style {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+
+}
+
+.card {
+  border: solid;
+}
+
+.card-img-top {
+  height: 50%;
+  border-bottom: solid;
+}
