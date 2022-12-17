@@ -6,7 +6,6 @@ const getCat = (cat) => `
   <div class="card-body">
     <h5 class="card-title">${cat.name}</h5>
     <p class="card-text">${cat.description}.</p>
-    
   </div>
 </div>
 `
