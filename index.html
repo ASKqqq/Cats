@@ -17,10 +17,66 @@
 <body>
   <h1>CATS</h1>
   <div class="container">
+    <button type="button" class="btn btn-success">ADD CAT</button>
 
     <div data-wrapper class="card_style">
-
     </div>
+
+  </div>
+  <div class="modal hidden">
+    <div class="modal__content">
+      <form name="createForm">
+
+        <h3>Add a new cat</h3>
+        <div class="mb-3">
+          <input type="number" name="id" placeholder="ID cat" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <input type="text" name="name" placeholder="name cat" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <select class="form-select" class="form-control">
+            <option selected>rate</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <select name="age" class="form-select" class="form-control">
+            <option selected>age</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <input type="text" name="image" placeholder="Image url" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <input type="text" name="description" placeholder="Description" class="form-control" />
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" name="favorite" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">favorite</label>
+        </div>
+        <button type="submit" class="btn btn-primary">ADD</button>
+    </div>
+    </form>
   </div>
 </body>
 
