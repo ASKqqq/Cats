@@ -4,6 +4,7 @@ const $openModalAddCat = document.querySelector('[data-openModal="addCat"]')
 const $openModalForEveryone = document.querySelector('[data-openModal="forEveryone"]')
 const $modal = document.querySelector('[data-modal]')
 const $modalContent = document.querySelector('[data-modalContent]')
+const $btnClose = document.querySelector('[data-btnClose]')
 
 // console.log($modal, $modalContent)
 
@@ -59,6 +60,11 @@ const creatCatHandler = $createForm.addEventListener('submit', (e) => {
 
 const clickModalClose = (ev) => {
   if (ev.target === $modal) {
+    $modal.classList.add('hidden')
+    $modal.removeEventListener('click', clickModalClose)
+    $createForm.removeEventListener('submit', creatCatHandler)
+  }
+  if (ev.target === $btnClose) {
     $modal.classList.add('hidden')
     $modal.removeEventListener('click', clickModalClose)
     $createForm.removeEventListener('submit', creatCatHandler)

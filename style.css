@@ -48,3 +48,7 @@ h1 {
 .modal__content h3 {
   text-align: center;
 }
+
+.btn-close {
+  float: right;
+}
