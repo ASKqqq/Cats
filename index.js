@@ -1,9 +1,9 @@
 const $wrapper = document.querySelector('[data-wrapper]')
 const $createForm = document.forms.createForm
-const $openModalAddCat = document.querySelector('[data-openModal="addCat"]')
+// const $openModalAddCat = document.querySelector('[data-openModal="addCat"]')
 const $openModalForEveryone = document.querySelector('[data-openModal="forEveryone"]')
 const $modal = document.querySelector('[data-modal]')
-const $modalContent = document.querySelector('[data-modalContent]')
+// const $modalContent = document.querySelector('[data-modalContent]')
 const $btnClose = document.querySelector('[data-btnClose]')
 
 const getCat = (cat) => `
@@ -97,7 +97,7 @@ document.addEventListener('keydown', (e) => {
 $wrapper.addEventListener('click', (event) => {
   if (event.target.closest('[data-cat-id]')) {
     const $catWr = event.target.closest('[data-cat-id]')
-    const catId = $catWr.dataset.catId
+    const { catId } = $catWr.dataset
 
     fetch(`https://cats.petiteweb.dev/api/single/ASKqqq/show/${catId}`)
       .then((res) => res.json())
@@ -130,7 +130,7 @@ $wrapper.addEventListener('click', (event) => {
     <label class="form-check-label badge bg-primary text-wrap fs-6" for="cat-fav-update">Favorite</label>
     </div>
     <button data-action="" type="button" class="btn btn-primary">Change</button>
-		<button data-action="" type="button" class="btn btn-danger">Delete</button>
+<button data-action="" type="button" class="btn btn-danger">Delete</button>
   </form>
   </div>
   </div>        
@@ -162,5 +162,3 @@ document.addEventListener('keydown', (e) => {
   //   // $createForm.removeEventListener('submit', creatCatHandler)
   }
 })
-
-
