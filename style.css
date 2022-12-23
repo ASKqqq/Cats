@@ -8,6 +8,7 @@ h1 {
   justify-content: center;
   gap: 32px;
   flex-wrap: wrap;
+
 }
 
 .card {
@@ -31,6 +32,7 @@ h1 {
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(3px);
+
 }
 
 .modal__content {
@@ -39,6 +41,7 @@ h1 {
   background: white;
   border-radius: 8px;
   padding: 24px;
+
 }
 
 .hidden {
@@ -49,6 +52,14 @@ h1 {
   text-align: center;
 }
 
+.btn {
+  margin: 0 0 20px 20px;
+}
+
 .btn-close {
   float: right;
+}
+
+[data-cat-id] {
+  cursor: pointer;
 }
