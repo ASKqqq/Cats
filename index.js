@@ -92,7 +92,7 @@ document.addEventListener('keydown', (e) => {
   }
 })
 
-/* отображуние информации в модальном окне о коте */
+/* отображение информации в модальном окне о коте */
 
 $wrapper.addEventListener('click', (event) => {
   if (event.target.closest('[data-cat-id]')) {
@@ -106,38 +106,57 @@ $wrapper.addEventListener('click', (event) => {
         `
         <div data-modalView class="modal">
     <div data-modalContent-view class="modal__content">
-    <form name="createForm">
+    <form data-form name="createForm">
     <button data-btnClose type="button" class="btn-close" aria-label="Close"></button>
     <div class="mb-3">
     <img src="${res.image}" class="card-img" alt="${res.name}">
+    </div>
+    <div class="mb-3">
       <label for="id" class="form-label">ID</label>
-      <input type="text" class="form-control" id="id" placeholder="${res.id}">
-    
+      <input data-id = "${res.id}" type="text" class="form-control" id="id" placeholder="${res.id}">
+      </div>
+      <div class="mb-3">
       <label for="name" class="form-label">Name Cat</label>
       <input type="text" name="name" placeholder="${res.name}" id="name" class="form-control">
-    
+      </div>
+      <div class="mb-3">
       <label for="rate" class="form-label">Rate</label>
-      <input type="text" name="rate" placeholder="${res.rate}" id="rate" class="form-control">
-    
+      <input type="number" name="rate" placeholder="${res.rate}" id="rate" class="form-control">
+      </div>
+      <div class="mb-3">
       <label for="age" class="form-label">Age</label>
-      <input type="text" name="age" placeholder="${res.age}" id="age" class="form-control">
-    
+      <input type="number" name="age" placeholder="${res.age}" id="age" class="form-control">
+      </div>
+      <div class="mb-3">
       <label for="description" class="form-label">Description</label>
       <input type="text" name="description" placeholder="${res.description}" id="description" class="form-control">
     </div>
     <div class="mb-3 form-check">
-    <input class="form-check-input fs-6" type="checkbox" value="${res.favorite}" value="${res.favorite}" id="cat-fav-update" name="cat-fav-update">
+    <input class="form-check-input fs-6" type="checkbox" value="${res.favorite}" id="cat-fav-update" name="cat-fav-update">
     <label class="form-check-label badge bg-primary text-wrap fs-6" for="cat-fav-update">Favorite</label>
     </div>
-    <button data-action="" type="button" class="btn btn-primary">Change</button>
-<button data-action="" type="button" class="btn btn-danger">Delete</button>
+    <button data-action="Change" type="button" class="btn btn-primary">Change</button>
+<button data-action="Delete" type="button" class="btn btn-danger">Delete</button>
   </form>
   </div>
   </div>        
 `,
       ))
+    // if (document.querySelector('#cat-fav-update').value === 'true') {
+    //   document.querySelector('#cat-fav-update').checked = true
+    // }
+    // document.querySelector('#cat-fav-update').addEventListener('click', () => {
+    //   if (document.querySelector('#cat-fav-update').checked) {
+    //     document.querySelector('#cat-fav-update').value = 'true'
+    //   }
+    //   if (!document.querySelector('#cat-fav-update').checked) {
+    //     document.querySelector('#cat-fav-update').value = 'false'
+    //   }
+    // })
   }
 })
+//   }
+// })
 
 /* Закрытие модалки добавления кота */
 
@@ -160,5 +179,58 @@ document.addEventListener('keydown', (e) => {
     $modalView.classList.add('hidden')
   //   // $modalView.removeEventListener('click', clickModalClose)
   //   // $createForm.removeEventListener('submit', creatCatHandler)
+  }
+})
+
+/* Удаление кота */
+
+$wrapper.addEventListener('click', (ev) => {
+  const $btnDelete = document.querySelector('[data-action="Delete"]')
+  if (ev.target === $btnDelete) {
+    const $catWr = document.querySelector('[data-id]')
+    const $catIdDel = $catWr.dataset.id
+    const $catID = document.querySelector('[data-cat-id]')
+    fetch(`https://cats.petiteweb.dev/api/single/ASKqqq/delete/${$catIdDel}`, {
+      method: 'DELETE',
+    }).then((res) => {
+      if (res.status === 200) {
+        return $catID.remove()
+      }
+      alert(`Удаление кота с id = ${$catIdDel} не удалось`)
+    })
+  }
+})
+
+/* Изменение кота */
+$wrapper.addEventListener('click', (ev) => {
+  // ev.preventDefault()
+  const $formCatCh = document.querySelector('[data-form]')
+  // const $catIdCh = $catWr.dataset.id
+  let formDataCh = new FormData($formCatCh)
+      console.log(formDataCh);
+  // formDataObject = {
+  //   ...formDataObject,
+  //   id: +formDataObject.id,
+  //   rate: +formDataObject.rate,
+  //   age: +formDataObject.age,
+  //   favorite: !!formDataObject.favorite,
+  // }
+
+  const $btnChange = document.querySelector('[data-action="Change"]')
+  if (ev.target === $btnChange) {
+    const $catWr = document.querySelector('[data-id]')
+    const $catIdCh = $catWr.dataset.id
+    const $catID = document.querySelector('[data-cat-id]')
+    const $catCh = document.querySelector('[data-modalContent-view]')
+    
+
+    // fetch(`https://cats.petiteweb.dev/api/single/ASKqqq/update/${$catIdCh}`, {
+    //   method: 'PUT',
+    // }).then((res) => {
+    //   if (res.status === 200) {
+    //     $catID.insertAdjacentHTML('afterbegin', getCat(catData))
+    //   }
+    //   alert(`Изменение кота с id = ${$catIdCh} не удалось`)
+    // })
   }
 })
