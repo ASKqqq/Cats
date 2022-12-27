@@ -192,45 +192,45 @@ $wrapper.addEventListener('click', (ev) => {
     const $catID = document.querySelector('[data-cat-id]')
     fetch(`https://cats.petiteweb.dev/api/single/ASKqqq/delete/${$catIdDel}`, {
       method: 'DELETE',
+    // eslint-disable-next-line consistent-return
     }).then((res) => {
       if (res.status === 200) {
         return $catID.remove()
       }
+      // eslint-disable-next-line no-alert
       alert(`Удаление кота с id = ${$catIdDel} не удалось`)
     })
   }
 })
 
 /* Изменение кота */
-$wrapper.addEventListener('click', (ev) => {
-  // ev.preventDefault()
-  const $formCatCh = document.querySelector('[data-form]')
-  // const $catIdCh = $catWr.dataset.id
-  let formDataCh = new FormData($formCatCh)
-      console.log(formDataCh);
-  // formDataObject = {
-  //   ...formDataObject,
-  //   id: +formDataObject.id,
-  //   rate: +formDataObject.rate,
-  //   age: +formDataObject.age,
-  //   favorite: !!formDataObject.favorite,
-  // }
+// $wrapper.addEventListener('click', (ev) => {
+//   // ev.preventDefault()
+//   const $formCatCh = document.querySelector('[data-form]')
+//   // const $catIdCh = $catWr.dataset.id
+//   let formDataCh = new FormData($formCatCh)
+//       console.log(formDataCh);
+//   // formDataObject = {
+//   //   ...formDataObject,
+//   //   id: +formDataObject.id,
+//   //   rate: +formDataObject.rate,
+//   //   age: +formDataObject.age,
+//   //   favorite: !!formDataObject.favorite,
+//   // }
 
-  const $btnChange = document.querySelector('[data-action="Change"]')
-  if (ev.target === $btnChange) {
-    const $catWr = document.querySelector('[data-id]')
-    const $catIdCh = $catWr.dataset.id
-    const $catID = document.querySelector('[data-cat-id]')
-    const $catCh = document.querySelector('[data-modalContent-view]')
-    
-
-    // fetch(`https://cats.petiteweb.dev/api/single/ASKqqq/update/${$catIdCh}`, {
-    //   method: 'PUT',
-    // }).then((res) => {
-    //   if (res.status === 200) {
-    //     $catID.insertAdjacentHTML('afterbegin', getCat(catData))
-    //   }
-    //   alert(`Изменение кота с id = ${$catIdCh} не удалось`)
-    // })
-  }
-})
+//   const $btnChange = document.querySelector('[data-action="Change"]')
+//   if (ev.target === $btnChange) {
+//     const $catWr = document.querySelector('[data-id]')
+//     const $catIdCh = $catWr.dataset.id
+//     const $catID = document.querySelector('[data-cat-id]')
+//     const $catCh = document.querySelector('[data-modalContent-view]')
+//     // fetch(`https://cats.petiteweb.dev/api/single/ASKqqq/update/${$catIdCh}`, {
+//     //   method: 'PUT',
+//     // }).then((res) => {
+//     //   if (res.status === 200) {
+//     //     $catID.insertAdjacentHTML('afterbegin', getCat(catData))
+//     //   }
+//     //   alert(`Изменение кота с id = ${$catIdCh} не удалось`)
+//     // })
+//   }
+// })
