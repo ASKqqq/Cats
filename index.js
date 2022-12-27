@@ -5,6 +5,7 @@ const $openModalForEveryone = document.querySelector('[data-openModal="forEveryo
 const $modal = document.querySelector('[data-modal]')
 // const $modalContent = document.querySelector('[data-modalContent]')
 const $btnClose = document.querySelector('[data-btnClose]')
+const $btnAd = document.querySelector('[data-btnAd]')
 
 const getCat = (cat) => `
 <div data-cat-id="${cat.id}" class="card" style="width: 18rem;">
@@ -68,6 +69,11 @@ const clickModalClose = (ev) => {
     $modal.removeEventListener('click', clickModalClose)
     $createForm.removeEventListener('submit', creatCatHandler)
   }
+  if (ev.target === $btnAd) {
+    $modal.classList.add('hidden')
+    $modal.removeEventListener('click', clickModalClose)
+    $createForm.removeEventListener('submit', creatCatHandler)
+  }
 }
 
 const openModalHandler = (e) => {
@@ -109,7 +115,7 @@ $wrapper.addEventListener('click', (event) => {
     <form data-form name="createForm">
     <button data-btnClose type="button" class="btn-close" aria-label="Close"></button>
     <div class="mb-3">
-    <img src="${res.image}" class="card-img" alt="${res.name}">
+    <img src="${res.image}" class="img-fluid" alt="${res.name}">
     </div>
     <div class="mb-3">
       <label for="id" class="form-label">ID</label>
@@ -190,14 +196,15 @@ $wrapper.addEventListener('click', (ev) => {
     const $catWr = document.querySelector('[data-id]')
     const $catIdDel = $catWr.dataset.id
     const $catID = document.querySelector('[data-cat-id]')
+    const $modalViewDel = document.querySelector('[data-modalView]')
     fetch(`https://cats.petiteweb.dev/api/single/ASKqqq/delete/${$catIdDel}`, {
       method: 'DELETE',
-    // eslint-disable-next-line consistent-return
     }).then((res) => {
       if (res.status === 200) {
-        return $catID.remove()
+        $catID.remove()
+        $modalViewDel.classList.add('hidden')
+        return
       }
-      // eslint-disable-next-line no-alert
       alert(`Удаление кота с id = ${$catIdDel} не удалось`)
     })
   }
@@ -205,32 +212,33 @@ $wrapper.addEventListener('click', (ev) => {
 
 /* Изменение кота */
 // $wrapper.addEventListener('click', (ev) => {
-//   // ev.preventDefault()
+//   console.log(ev.target);
+//   // // ev.preventDefault()
 //   const $formCatCh = document.querySelector('[data-form]')
 //   // const $catIdCh = $catWr.dataset.id
 //   let formDataCh = new FormData($formCatCh)
 //       console.log(formDataCh);
-//   // formDataObject = {
-//   //   ...formDataObject,
-//   //   id: +formDataObject.id,
-//   //   rate: +formDataObject.rate,
-//   //   age: +formDataObject.age,
-//   //   favorite: !!formDataObject.favorite,
-//   // }
+//   // // formDataObject = {
+//   // //   ...formDataObject,
+//   // //   id: +formDataObject.id,
+//   // //   rate: +formDataObject.rate,
+//   // //   age: +formDataObject.age,
+//   // //   favorite: !!formDataObject.favorite,
+//   // // }
 
-//   const $btnChange = document.querySelector('[data-action="Change"]')
-//   if (ev.target === $btnChange) {
-//     const $catWr = document.querySelector('[data-id]')
-//     const $catIdCh = $catWr.dataset.id
-//     const $catID = document.querySelector('[data-cat-id]')
-//     const $catCh = document.querySelector('[data-modalContent-view]')
-//     // fetch(`https://cats.petiteweb.dev/api/single/ASKqqq/update/${$catIdCh}`, {
-//     //   method: 'PUT',
-//     // }).then((res) => {
-//     //   if (res.status === 200) {
-//     //     $catID.insertAdjacentHTML('afterbegin', getCat(catData))
-//     //   }
-//     //   alert(`Изменение кота с id = ${$catIdCh} не удалось`)
-//     // })
-//   }
+//   // const $btnChange = document.querySelector('[data-action="Change"]')
+//   // if (ev.target === $btnChange) {
+//   //   const $catWr = document.querySelector('[data-id]')
+//   //   const $catIdCh = $catWr.dataset.id
+//   //   const $catID = document.querySelector('[data-cat-id]')
+//   //   const $catCh = document.querySelector('[data-modalContent-view]')
+//   //   // fetch(`https://cats.petiteweb.dev/api/single/ASKqqq/update/${$catIdCh}`, {
+//   //   //   method: 'PUT',
+//   //   // }).then((res) => {
+//   //   //   if (res.status === 200) {
+//   //   //     $catID.insertAdjacentHTML('afterbegin', getCat(catData))
+//   //   //   }
+//   //   //   alert(`Изменение кота с id = ${$catIdCh} не удалось`)
+//   //   // })
+//   // }
 // })
