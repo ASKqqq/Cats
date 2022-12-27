@@ -12,6 +12,8 @@ module.exports = {
   },
   rules: {
     semi: ['error', 'never'],
-    "no-console": 0
+    "no-console": 0,
+    "consistent-return": 0,
+    "no-alert": 0,
   },
 };
